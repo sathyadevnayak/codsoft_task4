@@ -17,8 +17,16 @@ def display_rules():
 
 def get_user_choice():
     while True:
-        user_choice = input("Enter your choice (rock(r), paper(p), scissors(s), quit): ").lower()
-        if user_choice in ["rock" , "r", "paper" , "p", "scissors" , "s", "quit"]:
+        user_choice = input("Enter your choice {Rock(r), Paper(p), Scissors(s), Quit(q)}: ").lower()
+        if user_choice=="r":
+            user_choice="rock"
+        if user_choice=="p":
+            user_choice="paper"
+        if user_choice=="s":
+            user_choice="scissors"
+        if user_choice=="q":
+            user_choice="quit"
+        if user_choice in ["rock" , "paper" , "scissors" , "quit"]:
             return user_choice
         else:
             print("Invalid choice. Please enter rock, paper, scissors, or quit.")
@@ -30,23 +38,17 @@ def determine_winner(user_choice, computer_choice):
     if user_choice == computer_choice:
         return "It's a tie!"
     elif (
-        (user_choice == "rock" or "r" and computer_choice == "scissors" or "s") or
-        (user_choice == "paper" or "p" and computer_choice == "rock" or "r") or
-        (user_choice == "scissors" or "s" and computer_choice == "paper" or "p")
+        (user_choice == "rock" and computer_choice == "scissors" ) or
+        (user_choice == "paper" and computer_choice == "rock" ) or
+        (user_choice == "scissors" and computer_choice == "paper")
     ):
         return "You win!"
     else:
         return "Computer wins!"
 
 def display_result(user_choice, computer_choice, result):
-    if user_choice=="r":
-        user_choice="rock"
-    if user_choice=="p":
-        user_choice="paper"
-    if user_choice=="s":
-        user_choice="scissors"
-    print(f"\nYou chose: {user_choice.capitalize()}")
-    print(f"Computer chose: {computer_choice.capitalize()}")
+    print(f"\nYou choose: {user_choice.capitalize()}")
+    print(f"Computer choose: {computer_choice.capitalize()}")
     print(result)
 
 def main():
